@@ -4,32 +4,34 @@
 	require 'functions.php';
 	require 'header.php';
 
-	echo '<form action="index.php" method="post">';
-	echo '<textarea id="payload" name="payload" class="element textarea medium"></textarea>';
+	_TrelloAuth();
 
-	echo '<br />
-		<input type="submit" />
-		</form>';
+	//~ echo '<form action="index.php" method="post">';
+	//~ echo '<textarea id="payload" name="payload" class="element textarea medium"></textarea>';
 
-	echo '<br/><br/><br/>';
+	//~ echo '<br />
+		//~ <input type="submit" />
+		//~ </form>';
 
-	if (!empty($_POST["payload"])) {
+	//~ echo '<br/><br/><br/>';
 
-		$payload = json_decode($_POST["payload"], true);
+	//~ if (!empty($_POST["payload"])) {
 
-		echo '<br/><br/>';
-		echo $payload['head_commit']['message'];
-		echo '<br/><br/>';
+		//~ $payload = json_decode($_POST["payload"], true);
 
-		echo '<pre>';
-		echo print_r($payload);
-		echo '</pre>';
+		//~ echo '<br/><br/>';
+		//~ echo $payload['head_commit']['message'];
+		//~ echo '<br/><br/>';
 
-	} else {
+		//~ echo '<pre>';
+		//~ echo print_r($payload);
+		//~ echo '</pre>';
 
-		$payload = "";
+	//~ } else {
 
-	}
+		//~ $payload = "";
+
+	//~ }
 
 	//~ $file=fopen("payload.txt","w+") or exit("Unable to open file!");
 

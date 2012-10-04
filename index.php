@@ -4,7 +4,13 @@
 	require 'functions.php';
 	require 'header.php';
 
-	_TrelloAuth();
+	$h = NEW TrelloClient($username, $apiKey);
+	//~ $test = $h->getMember();
+	$test = $h->listBoardCards('506b1cbc632aaf5560154a80');
+
+	echo '<pre>';
+	echo print_r($test);
+	echo '</pre>';
 
 	//~ echo '<form action="index.php" method="post">';
 	//~ echo '<textarea id="payload" name="payload" class="element textarea medium"></textarea>';

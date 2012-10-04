@@ -2,9 +2,9 @@
 <?php
 
 	require 'config.php';
-	include 'trello/Trello.php';
-	include 'trello/TrelloClient.php';
-	include 'trello/TrelloBoard.php';
+	include 'php-trello/Trello.php';
+	include 'php-trello/TrelloClient.php';
+	include 'php-trello/TrelloBoard.php';
 
 	function _TrelloAuth() {
 

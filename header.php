@@ -12,11 +12,11 @@
 			<meta name="language" content="de" />
 			<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 			<script src="https://api.trello.com/1/client.js?key=' .$apiKey. '"></script>
-                        <script src="js/trello2.js"></script>
+                        <script src="js/trello.js"></script>
 		</head>
 		<!-- header end -->';
 
-	echo '<body class="default-template">
+	echo '<body class="default-template" onload="OnLoad()">
             <br/><br/><br/>';
 
 

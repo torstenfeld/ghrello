@@ -9,8 +9,6 @@
 			//~ .post("cards", { name: "Foo", desc: "Bar", idList:"..."})
 			//~ .done(function(card) { alert(card.id) })
 
-
-
 	}
 
 	function _FormCreate() {
@@ -19,8 +17,8 @@
 		echo '<textarea id="payload" name="payload" class="element textarea medium"></textarea>';
 
 		echo '<br />
-			<input type="submit" />
-			</form>';
+                    <input type="submit" />
+                    </form>';
 
 	}
 

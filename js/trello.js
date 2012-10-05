@@ -1,30 +1,39 @@
 
+var isLoggedIn;
+
 function TrelloAuthorize() {
-    
-    updateLoggedIn();
     
     Trello.authorize({
         type: "popup",
         persist: true,
-        success: onAuthorize,
+        success: "TrelloGetCards",
         error: "",
         name: "Ghrello",
         scope: {read:true, write:true, account:false},
         expiration: "never"
     });
+    
+    UpdateLoggedIn();
 }
 
-function TrelloDeauthorize() {
-    Trello.deauthorize();
-    updateLoggedIn();
+function OnLoad() {
     
-    
-}
-
-var onAuthorize = function() {
-    updateLoggedIn();
+    TrelloAuthorize();
+    isLoggedIn = UpdateLoggedIn();
+//    alert("OnLoad");
+//    if (!isLoggedIn) {
+//        alert("OnLoad - not logged in");
+//        TrelloAuthorize();
+//        isLoggedIn = UpdateLoggedIn();
+//    } else {
+//        alert("OnLoad - logged in");
+//    }
     $("#output").empty();
 
+    TrelloGetCards();
+}
+
+function TrelloGetCards() {
     Trello.members.get("me", function(member){
         $("#fullName").text(member.fullName);
 
@@ -45,16 +54,19 @@ var onAuthorize = function() {
             });
         });
     });
+    
+}
 
-};
+function TrelloDeauthorize() {
+    Trello.deauthorize();
+    UpdateLoggedIn();
+}
 
-var updateLoggedIn = function() {
-    var isLoggedIn = Trello.authorized();
+function UpdateLoggedIn() {
+    isLoggedIn = Trello.authorized();
     $("#loggedout").toggle(!isLoggedIn);
+//    $("#loggedout").toggle(isLoggedIn);
     $("#loggedin").toggle(isLoggedIn);
-};
-
-Trello.authorize({
-    interactive:false,
-    success: onAuthorize
-});
+//    alert("UpdateLoggedIn:" + isLoggedIn);
+    return isLoggedIn;
+}

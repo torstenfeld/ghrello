@@ -7,20 +7,20 @@
                 <a id="connectLink" onclick="TrelloAuthorize();" href="#">Connect To Trello</a>
             </div>
 
-            <div id="loggedin">
+            <!-- <div id="loggedin"> -->
+            <div id="test">
                 <div id="header">
                     Logged in to as <span id="fullName"></span> 
                     <a id="disconnect" onclick="TrelloDeauthorize();" href="#">Log Out</a>
                 </div>
 
-                <div id="output"></div>
-            </div>  ';
+                <div id="output">output</div>
+            </div>  
+            <div id="authorizationtest">
+                <a id="atest" onclick="UpdateLoggedIn();">click me for auth test</a>
+            </div>';
 
 	echo '<br/><br/><br/>';
-
-
-
-	//~ $file=fopen("payload.txt","w+") or exit("Unable to open file!");
 
 
 

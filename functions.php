@@ -4,6 +4,7 @@
 	require 'config.php';
         
         $commits = array();
+        $cards = array();
 
 	function _CreateCard() {
 
@@ -35,6 +36,20 @@
             echo '<pre>';
             echo print_r($commits);
             echo '</pre>';
+            
+        }
+        
+        function _FillCardsArrayWithCommitMessages() {
+            
+            global $commits, $cards;
+            
+            foreach ($commits as $commit) {
+                if (preg_match("", $commit)) {
+                    
+                }
+                
+                array_push($cards, "test");
+            }
             
         }
 

@@ -1,4 +1,25 @@
 
+function TrelloAuthorize() {
+    
+    updateLoggedIn();
+    
+    Trello.authorize({
+        type: "popup",
+        persist: true,
+        success: onAuthorize,
+        error: "",
+        name: "Ghrello",
+        scope: {read:true, write:true, account:false},
+        expiration: "never"
+    });
+}
+
+function TrelloDeauthorize() {
+    Trello.deauthorize();
+    updateLoggedIn();
+    
+    
+}
 
 var onAuthorize = function() {
     updateLoggedIn();
@@ -33,22 +54,7 @@ var updateLoggedIn = function() {
     $("#loggedin").toggle(isLoggedIn);
 };
 
-var logout = function() {
-    Trello.deauthorize();
-    updateLoggedIn();
-};
-
 Trello.authorize({
     interactive:false,
     success: onAuthorize
 });
-
-$("#connectLink")
-.click(function(){
-    Trello.authorize({
-        type: "popup",
-        success: onAuthorize
-    })
-});
-
-$("#disconnect").click(logout);

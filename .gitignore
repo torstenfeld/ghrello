@@ -30,3 +30,4 @@ ulqa-server-statistics/*/*
 ulqa-server-statistics/*/*/*
 *.bak
 generated/*
+/nbproject/private/

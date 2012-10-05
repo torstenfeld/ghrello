@@ -24,14 +24,19 @@
 
 	function _PayloadGet() {
 
-		global $payload;
+		global $payload, $gh_project;
+                
 
 		if (!empty($_POST["payload"])) {
+                    
+                        $payload = json_decode($_POST["payload"], true);
 
-			$payload = json_decode($_POST["payload"], true);
-
+                        $gh_commit_message = $payload['head_commit']['message'];
+                        $gh_project = $payload['repository']['name'];
+                        
 			echo '<br/><br/>';
-			echo $payload['head_commit']['message'];
+			echo $gh_commit_message. '<br/>';
+                        echo $gh_project;
 			echo '<br/><br/>';
 
 			echo '<pre>';

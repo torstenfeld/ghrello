@@ -2,6 +2,14 @@
 
 	require 'functions.php';
 	require 'header.php';
+        
+        _FormCreate();
+        
+        echo '<br/><br/><br/>';
+        
+        _PayloadGet();
+        
+        echo '<br/><br/><br/>';
 
         echo '<div id="loggedout">
                 <a id="connectLink" onclick="TrelloAuthorize();" href="#">Connect To Trello</a>

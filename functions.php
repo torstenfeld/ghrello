@@ -2,6 +2,8 @@
 <?php
 
 	require 'config.php';
+        
+        $commits = array();
 
 	function _CreateCard() {
 
@@ -21,6 +23,20 @@
                     </form>';
 
 	}
+        
+        function _GetAllCommitsFromPayload() {
+            
+            global $payload, $commits;
+            
+            foreach ($payload['commits'] as $commit) {
+                array_push($commits, $commit['message']);
+            }
+            
+            echo '<pre>';
+            echo print_r($commits);
+            echo '</pre>';
+            
+        }
 
 	function _PayloadGet() {
 
@@ -34,14 +50,16 @@
                         $gh_commit_message = $payload['head_commit']['message'];
                         $gh_project = $payload['repository']['name'];
                         
-			echo '<br/><br/>';
-			echo $gh_commit_message. '<br/>';
-                        echo $gh_project;
-			echo '<br/><br/>';
-
-			echo '<pre>';
-			echo print_r($payload);
-			echo '</pre>';
+//			echo '<br/><br/>';
+//			echo $gh_commit_message. '<br/>';
+//                        echo $gh_project;
+//			echo '<br/><br/>';
+//
+//			echo '<pre>';
+//			echo print_r($payload);
+//			echo '</pre>';
+                        
+                        _GetAllCommitsFromPayload();
 
 		} else {
 

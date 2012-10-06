@@ -4,15 +4,15 @@ var longCardId;
 
 function TrelloAuthorize() {
     
-    Trello.authorize({
+    var authorize = Trello.authorize({
         type: "popup",
         persist: true,
         success: "TrelloGetCards",
-        error: "",
         name: "Ghrello",
         scope: {read:true, write:true, account:false},
         expiration: "never"
     });
+//    alert(objToString(authorize));
     
     UpdateLoggedIn();
 }
@@ -22,28 +22,28 @@ function TrelloCardComment(id, comment) {
     // card shortlink: https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-actions-comments
     comment2 = "test2";
     var longid = TrelloGetCardId(id);
-//    alert("2: " + comment2);
-    alert("test3");
-//    alert("2: " + longid + "\n" + String(comment));
+    alert("11: " + longid);
+
     
-//    Trello.post("cards/" + id + "/actions/comments/",
+//    Trello.post("cards/" + longid + "/actions/comments/", {
 //        text: comment,
-//        success: "",
-//        error: ""
+//        success: alert("success: " + longid),
+//        error: alert("error: " + longid)
 //    });
+    
+    var test = Trello.post("cards/" + longid + "/actions/comments/", {text: comment});
+    
+    alert(objToString(test));
     
 }
 
 function TrelloGetCardId(cardid) {
 //    /1/boards/board_id/cards/short_id
+    
     Trello.get("boards/" + boardid + "/cards/" + cardid, function(card) {
-        alert("1: " + String(card.id));
         longCardId = card.id;
-        alert("2: " + longCardId);
     });
-    alert(longCardId);
-//    alert(card.id);
-//    return longid;
+    return longCardId;
 }
 
 function objToString (obj) {
@@ -63,9 +63,11 @@ function OnError() {
 
 function OnLoad() {
     
+    jQuery.ajaxSetup({async:false});
+    
     TrelloAuthorize();
     isLoggedIn = UpdateLoggedIn();
-//    alert("OnLoad");
+    alert(isLoggedIn);
 //    if (!isLoggedIn) {
 //        alert("OnLoad - not logged in");
 //        TrelloAuthorize();
@@ -89,17 +91,18 @@ function TrelloGetCards() {
 
         // Output a list of all of the cards that are on the board list
 //        Trello.get("members/me/cards", function(cards) {
-        Trello.get("boards/" + boardid + "/cards", function(cards) {
+        var result = Trello.get("boards/" + boardid + "/cards", function(cards) {
             $cards.empty();
             $.each(cards, function(ix, card) {
                 $("<a>")
                 .attr({href: card.url, target: "trello"})
                 .addClass("card")
-                .text(card.name + " / " + card.id)
+                .text(card.name + " / " + card.id + " / " + card.idShort)
 //                .text(card.name + " / " + card.id + " / " + TrelloGetCardId("17"))
                 .appendTo($cards);
             });
         });
+        alert("result: "+ objToString(result));
     });
     
 }
@@ -111,9 +114,9 @@ function TrelloDeauthorize() {
 
 function UpdateLoggedIn() {
     isLoggedIn = Trello.authorized();
-    $("#loggedout").toggle(!isLoggedIn);
+//    $("#loggedout").toggle(!isLoggedIn);
 //    $("#loggedout").toggle(isLoggedIn);
-    $("#loggedin").toggle(isLoggedIn);
+//    $("#loggedin").toggle(isLoggedIn);
 //    alert("UpdateLoggedIn:" + isLoggedIn);
     return isLoggedIn;
 }

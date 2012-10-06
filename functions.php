@@ -28,30 +28,38 @@
         function _GetAllCommitsFromPayload() {
             
             global $payload, $commits;
-            
+            $i = 0;
             foreach ($payload['commits'] as $commit) {
-                array_push($commits, $commit['message']);
+                $commits[$i]['message'] = $commit['message'];
+                $commits[$i]['id'] = $commit['id'];
+                $commits[$i]['url'] = $commit['url'];
+//              array_push($commits, $commit['message']);
+                $i++;
             }
             
-            echo '<pre>';
-            echo print_r($commits);
-            echo '</pre>';
+//            echo '<pre>';
+//            echo print_r($commits);
+//            echo '</pre>';
             
         }
         
         function _FillCardsArrayWithCommitMessages() {
             
             global $commits, $cards;
-            
+            $i = 0;
             foreach ($commits as $commit) {
-                if (preg_match('/.*(card)\s(\d+)\s\-\s(.*)/', $commit)) {
+                $pattern = '/.*card\s(\d+)\s\-\s(.*)/';
+                $string = $commit['message'];
+                
+                if (preg_match($pattern, $string)) {
 //                    echo 'true<br/>';-
-                    $cardid = preg_replace('/.*card\s(\d+)\s\-(.*)/', '$1', $commit);
-                    $cardtext = preg_replace('/.*(card)\s(\d+)\s\-(.*)/', '$3', $commit);
-                    $cards[$cardid] = $cardtext;
-                } else {
-                    echo 'false<br/>';
-                }
+                    $cardid = preg_replace($pattern, '$1', $string);
+                    $cardtext = preg_replace($pattern, '$2', $string);
+                    $cards[$i]['id'] = $cardid;
+                    $cards[$i]['text'] = $cardtext. ' / ' .$commit['id']. ' / ' .$commit['url'];
+//                    $cards[$i]['action'] = "";
+                    $i++;
+                } 
             }
             
             echo '<pre>';

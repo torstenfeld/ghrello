@@ -5,6 +5,16 @@
         
         $commits = array();
         $cards = array();
+        
+        function _PostCommentToCard() {
+            global $cards;
+            
+            echo '<script>';
+            foreach ($cards as $card) {
+                echo 'TrelloCardComment(' .$card['id']. ', ' .$card['text']. ');';
+            }
+            echo '</script>';
+        }
 
 	function _CreateCard() {
 

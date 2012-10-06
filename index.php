@@ -23,6 +23,11 @@
                     Logged in to as <span id="fullName"></span> 
                     <a id="disconnect" onclick="TrelloDeauthorize();" href="#">Log Out</a>
                 </div>
+                
+                <br/><br/>
+                <script>TrelloCardComment("17", "test");</script>
+                <div id="test"></div>
+                <br/><br/>
 
                 <div id="output">output</div>
             </div>  

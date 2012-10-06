@@ -44,12 +44,19 @@
             global $commits, $cards;
             
             foreach ($commits as $commit) {
-                if (preg_match("", $commit)) {
-                    
+                if (preg_match('/.*(card)\s(\d+)\s\-\s(.*)/', $commit)) {
+//                    echo 'true<br/>';-
+                    $cardid = preg_replace('/.*card\s(\d+)\s\-(.*)/', '$1', $commit);
+                    $cardtext = preg_replace('/.*(card)\s(\d+)\s\-(.*)/', '$3', $commit);
+                    $cards[$cardid] = $cardtext;
+                } else {
+                    echo 'false<br/>';
                 }
-                
-                array_push($cards, "test");
             }
+            
+            echo '<pre>';
+            echo print_r($cards);
+            echo '</pre>';
             
         }
 

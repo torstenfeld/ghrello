@@ -3,6 +3,7 @@
 
 	require 'config/config.php';
         
+//  VARIABLES        
         $commits = array();
         $cards = array();
         $config_array = array();
@@ -10,14 +11,15 @@
         $tr_boardid = ""; // trello board id
         $gh_project = ""; // name of github project
         
+//  CODE ON LOAD        
         if ((_CurPageName() == "index.php")) {
             if (!_CheckConfigValues()) {
-//                header ("Location: http://www.example.com/");
                 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=install.php">';
                 exit();
             }
         }
         
+//  FUNCTIONS        
         function _CurPageName() {
             return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
         }

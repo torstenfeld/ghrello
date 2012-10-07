@@ -1,7 +1,7 @@
 
 <?php
 
-	require 'config.php';
+	require 'config/config.php';
         
         $commits = array();
         $cards = array();

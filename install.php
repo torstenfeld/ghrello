@@ -17,7 +17,7 @@
 	<div id="form_container">
 	
 		<h1><a>Ghrello installation</a></h1>
-		<form id="form_install" class="appnitro"  method="post" action="">
+		<form id="form_install" class="appnitro"  method="post" action="setup.php">
 					<div class="form_description">
 			<h2>Ghrello installation</h2>
 			<p>Please enter the settings below to configure your installation of Ghrello.</p>
@@ -58,7 +58,7 @@ https://trello.com/board/dev-ghrello/506ac35636fa37ae13919ff8)</small></p>
 	</body>
 </html>';
 
-    require 'footer.php';
+//    require 'footer.php';
 
 
 ?>

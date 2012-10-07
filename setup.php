@@ -24,6 +24,18 @@
 			<p>Please enter the settings below to configure your installation of Ghrello.</p>
 		</div></div>	';
     
+    if(empty($_POST["trelloapikey"])
+        or empty($_POST["trelloboardid"])
+        or empty($_POST["ghproject"])) {
+        die("empty post parameters");
+    }
+    
+    $newconfig = array();
+    $newconfig['trapikey'] = $_POST["trelloapikey"];
+    $newconfig['trboardid'] = $_POST["trelloboardid"];
+    $newconfig['ghproject'] = $_POST["ghproject"];
+    
+    write_ini_file($newconfig);
     
     
     

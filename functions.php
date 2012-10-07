@@ -10,7 +10,17 @@
         $tr_boardid = ""; // trello board id
         $gh_project = ""; // name of github project
         
-        _CheckConfigValues();
+        if ((_CurPageName() == "index.php")) {
+            if (!_CheckConfigValues()) {
+//                header ("Location: http://www.example.com/");
+                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=install.php">';
+                exit();
+            }
+        }
+        
+        function _CurPageName() {
+            return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+        }
         
         function _CheckConfigValues() {
             global $apiKey, $tr_boardid, $gh_project, $config_array;
@@ -20,7 +30,8 @@
             if ( !isset($config_array['trapikey'])
                 and !isset($config_array['trapikey'])
                 and !isset($config_array['trapikey'])) {
-                die("No configuration found");
+//                die("No configuration found");
+                return false;
             }
             
             $apiKey = $config_array['trapikey']; // key from test account
@@ -35,7 +46,7 @@
 //            
 //            if (empty($gh_project))
 //                die("GitHub project name missing in configuration.");
-            
+            return true;
         }
         
         function _PostCommentToCard() {

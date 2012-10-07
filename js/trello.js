@@ -15,21 +15,29 @@ function TrelloAuthorize() {
 //        expiration: "never"
 //    });
 
-    requestToken = Trello.authorize({
-        type: "popup",
-        persist: true,
-        expiration: "never",
-        name: "Ghrello",
-        success: "TrelloGetCards",
-        scope: {read:true, write:true, account:false},
-//        success: function(){
-//          $("#token-request-wrapper").fadeOut();
-//          token = Trello.token();
-//          var memberBoardsUrl = "https://api.trello.com/1/members/me/boards?key=95c35b8a691ef9fc9ec394e913d869b0&token=" + token;
-//          $memberBoards = $("#member-boards");
-//          $memberBoards.attr("href", memberBoardsUrl).text(memberBoardsUrl);
+    if (!Trello.authorized()) {
+//        requestToken = Trello.authorize({
+//            type: "popup",
+//            persist: true,
+//            expiration: "never",
+//            name: "Ghrello",
+//            success: "TrelloGetCards",
+//            scope: {read:true, write:true, account:false}
+//        });
         
-      });
+        //test for redirect
+        requestToken = Trello.authorize({
+            type: "redirect",
+            interactive: "false",
+            persist: true,
+            expiration: "never",
+            name: "Ghrello",
+            success: "TrelloGetCards",
+            scope: {read:true, write:true, account:false}
+        });
+        
+        
+    }
 
     token = Trello.token();
 //    alert("TrelloAuthorize - token: \n" + token);

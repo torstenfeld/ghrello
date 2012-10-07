@@ -12,6 +12,7 @@
         echo '<br/><br/><br/>';
         
         _FillCardsArrayWithCommitMessages();
+        _PostCommentToCard();
 
         echo '<div id="loggedout">
                 <a id="connectLink" onclick="TrelloAuthorize();" href="#">Connect To Trello</a>
@@ -25,7 +26,7 @@
                 </div>
                 
                 <br/><br/>
-                <script>TrelloCardComment("17", "test");</script>
+                <!-- <script>TrelloCardComment("17", "test");</script> -->
                 <div id="test"></div>
                 <br/><br/>
 

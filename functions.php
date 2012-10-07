@@ -11,7 +11,7 @@
             
             echo '<script>';
             foreach ($cards as $card) {
-                echo 'TrelloCardComment(' .$card['id']. ', ' .$card['text']. ');';
+                echo 'TrelloCardComment("' .$card['id']. '", "' .$card['text']. '");';
             }
             echo '</script>';
         }

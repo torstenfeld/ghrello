@@ -1,28 +1,48 @@
 
-var isLoggedIn;
-var longCardId;
+isLoggedIn = "";
+longCardId = "";
+requestToken = "";
+token = "";
 
 function TrelloAuthorize() {
     
-    var authorize = Trello.authorize({
+//    var authorize = Trello.authorize({
+//        type: "popup",
+//        persist: true,
+//        success: "TrelloGetCards",
+//        name: "Ghrello",
+//        scope: {read:true, write:true, account:false},
+//        expiration: "never"
+//    });
+
+    requestToken = Trello.authorize({
         type: "popup",
         persist: true,
-        success: "TrelloGetCards",
+        expiration: "never",
         name: "Ghrello",
+        success: "TrelloGetCards",
         scope: {read:true, write:true, account:false},
-        expiration: "never"
-    });
-//    alert(objToString(authorize));
+//        success: function(){
+//          $("#token-request-wrapper").fadeOut();
+//          token = Trello.token();
+//          var memberBoardsUrl = "https://api.trello.com/1/members/me/boards?key=95c35b8a691ef9fc9ec394e913d869b0&token=" + token;
+//          $memberBoards = $("#member-boards");
+//          $memberBoards.attr("href", memberBoardsUrl).text(memberBoardsUrl);
+        
+      });
+
+    token = Trello.token();
+//    alert("TrelloAuthorize - token: \n" + token);
+//    alert(objToString(requestToken));
     
-    UpdateLoggedIn();
+//    UpdateLoggedIn();
 }
 
 function TrelloCardComment(id, comment) {
     // API: https://trello.com/docs/gettingstarted/clientjs.html
     // card shortlink: https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-actions-comments
-    comment2 = "test2";
     var longid = TrelloGetCardId(id);
-    alert("11: " + longid);
+    alert("11: " + longid + " / " + comment);
 
     
 //    Trello.post("cards/" + longid + "/actions/comments/", {
@@ -30,10 +50,17 @@ function TrelloCardComment(id, comment) {
 //        success: alert("success: " + longid),
 //        error: alert("error: " + longid)
 //    });
+
+//    token = Trello.token();
+//    alert("TrelloCardComment - token: \n" + token);
     
-    var test = Trello.post("cards/" + longid + "/actions/comments/", {text: comment});
+    var test = Trello.post("cards/" + longid + "/actions/comments/?token=" + token, {
+        text: comment,
+        success: alert("TrelloCardComment - card comment: \nsuccess!"),
+        error: alert("TrelloCardComment - card comment: \nerror!")
+    });
     
-    alert(objToString(test));
+//    alert("TrelloCardComment - test: \n" + objToString(test));
     
 }
 
@@ -63,11 +90,9 @@ function OnError() {
 
 function OnLoad() {
     
-    jQuery.ajaxSetup({async:false});
-    
-    TrelloAuthorize();
-    isLoggedIn = UpdateLoggedIn();
-    alert(isLoggedIn);
+//    TrelloAuthorize();
+//    isLoggedIn = UpdateLoggedIn();
+//    alert(isLoggedIn);
 //    if (!isLoggedIn) {
 //        alert("OnLoad - not logged in");
 //        TrelloAuthorize();
@@ -75,7 +100,7 @@ function OnLoad() {
 //    } else {
 //        alert("OnLoad - logged in");
 //    }
-    $("#output").empty();
+//    $("#output").empty();
 
     TrelloGetCards();
 }
@@ -102,7 +127,7 @@ function TrelloGetCards() {
                 .appendTo($cards);
             });
         });
-        alert("result: "+ objToString(result));
+//        alert("result: "+ objToString(result));
     });
     
 }

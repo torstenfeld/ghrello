@@ -5,15 +5,37 @@
         
         $commits = array();
         $cards = array();
-        $config_array = parse_ini_file("config/config.ini");
-        $apiKey = $config_array['trapikey']; // key from test account
-        $tr_boardid = $config_array['trboardid']; // trello board id
-        $gh_project = $config_array['ghproject']; // name of github project
+        $config_array = array();
+        $apiKey = ""; // key from test account
+        $tr_boardid = ""; // trello board id
+        $gh_project = ""; // name of github project
         
-        
+        _CheckConfigValues();
         
         function _CheckConfigValues() {
-            // check for valid values in config variables - see card 27 (https://trello.com/card/check-for-valid-values-in-config-variables/506ac35636fa37ae13919ff8/27)
+            global $apiKey, $tr_boardid, $gh_project, $config_array;
+            
+            $config_array = parse_ini_file("config/config.ini");
+            
+            if ( !isset($config_array['trapikey'])
+                and !isset($config_array['trapikey'])
+                and !isset($config_array['trapikey'])) {
+                die("No configuration found");
+            }
+            
+            $apiKey = $config_array['trapikey']; // key from test account
+            $tr_boardid = $config_array['trboardid']; // trello board id
+            $gh_project = $config_array['ghproject']; // name of github project
+
+//            if (empty($apiKey))
+//                die("Trello API key missing in configuration.");
+//            
+//            if (empty($tr_boardid))
+//                die("Trello board id missing in configuration.");
+//            
+//            if (empty($gh_project))
+//                die("GitHub project name missing in configuration.");
+            
         }
         
         function _PostCommentToCard() {

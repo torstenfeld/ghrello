@@ -30,8 +30,8 @@
             $config_array = parse_ini_file("config/config.ini");
             
             if ( !isset($config_array['trapikey'])
-                and !isset($config_array['trapikey'])
-                and !isset($config_array['trapikey'])) {
+                and !isset($config_array['trboardid'])
+                and !isset($config_array['ghproject'])) {
 //                die("No configuration found");
                 return false;
             }

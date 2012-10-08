@@ -30,7 +30,8 @@ function TrelloAuthorize() {
     }
 
     token = Trello.token();
-//    alert("TrelloAuthorize - token: \n" + token);
+    alert("TrelloAuthorize - token: \n" + token);
+    $.post("../action.php", { trtoken: token });
 //    alert(objToString(requestToken));
     
 //    UpdateLoggedIn();

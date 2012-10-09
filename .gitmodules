@@ -1,0 +1,3 @@
+[submodule "TrelloApi"]
+	path = TrelloApi
+	url = git@github.com:torstenfeld/TrelloApi.git

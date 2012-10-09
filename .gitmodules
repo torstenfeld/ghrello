@@ -1,3 +1,6 @@
-[submodule "TrelloApi"]
+﻿[submodule "TrelloApi"]
 	path = TrelloApi
 	url = git@github.com:torstenfeld/TrelloApi.git
+[submodule "OAuth"]
+	path = OAuth
+	url = git@github.com:torstenfeld/OAuth.git

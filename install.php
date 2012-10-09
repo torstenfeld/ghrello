@@ -41,6 +41,11 @@ https://trello.com/board/dev-ghrello/506ac35636fa37ae13919ff8)</small></p>
 		<div>
 			<input id="ghproject" name="ghproject" class="element text large" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_3"><small>Enter the name of the GitHub project (e.g. ghrello from link: https://github.com/torstenfeld/ghrello/)</small></p> 
+		</li>           <li id="li_4" >
+		<label class="description" for="element_3">Trello token (hidden)</label>
+		<div>
+			<input id="ghproject" name="ghproject" class="element text large" type="text" maxlength="255" value=""/> 
+		</div> 
 		</li>
 			
 					<li class="buttons">
